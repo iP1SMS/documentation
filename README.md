@@ -12,5 +12,5 @@ Our premium services such as AnalysSMS are also available through API, with an a
 
 
 ### REST API Index
-* [General Authentication](Autentication)
+* [General Authentication](Authentication)
 * [REST API](REST-API)
