@@ -29,6 +29,10 @@ Authorization: Basic aXAxLTEyMzQ1OkNuYlhGZnlUTTVCVEtoN3VOVg==`
 
 Sending SMS
 -----------
+ 
+ * Base URL: `https://api.ip1sms.com/`
+ * Endpoint: `api/sms/send`
+
 In order to send SMS you need to have credits. When you create an account and verify your phone number you'll be given €1 in credits, the amount of SMS you'll be able to send with those credits will heavily depend on what country you'll be sending the SMSes to.
 
 When creating a request to send SMS we use the `/api/sms/send` endpoint with the HTTP method `POST`. 
