@@ -174,3 +174,64 @@ $context  = stream_context_create($options);
 // Send the request
 $response = file_get_contents($url, false, $context);
 ```
+
+Reading sent SMS
+----------------
+
+* Base URL: `https://api.ip1sms.com/`
+* Endpoint: `api/sms/sent/{id}`
+
+Once you've sent your request to `api/sms/send` you will first get a response for the SMS containing information such as ID, message, recipient phone number and initial status report like the json below.
+
+``` json
+{
+  "ID": 7331,
+  "BundleID": 1337,
+  "To": "4610606060",
+  "From": "iP1",
+  "Message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+  "Status": 0,
+  "StatusDescription": "Delivered to gateway",
+  "Created": "2017-11-15T10:31:11.1727413+00:00",
+  "Modified": "2017-11-15T10:31:11.1727413+00:00"
+}
+```
+
+* `ID`: A unique integer value for the specific SMS.
+* `BundleID`: Integer that identifies that SMS with the same value was sent through the same request otherwise it's set to null.
+* `Status`: Integer value telling the status of the SMS. See [Status codes](#status-codes) for possible values.
+* `StatusDescription`: A describing text of the status code.
+* `Created`: When the SMS was created in UTC.
+* `Modified`: When the SMS was last updated. Most often when the status was updated. Only available on `GET` requests.
+
+You can later use the ID to fetch updates for the specific SMS via the `api/sms/sent/{id}`-endpoint but you can also fetch all your sent SMS by not providing an ID and making a request to `api/sms/sent`. 
+
+Status codes
+------------
+
+This is the list of all possible status codes or an SMS.
+
+Status code| Description
+-----------|------------
+0          | Delivered to gateway
+1          | Gateway login failed
+2          | Invalid message content
+3          | Invalid phone number format
+4          | Insufficient funds
+10         | Received by the gateway
+11         | Delayed delivery
+12         | Delayed delivery cancelled
+21         | Delivered to the GSM network
+22         | Delivered to the phone
+30         | Insufficient funds
+41         | Invalid message content
+42         | Internal error
+43         | Delivery failed
+44         | Delivery failed
+45         | Invalid phone number
+50         | General delivery error
+51         | Delivery to GSM network failed
+52         | Delivery to phone failed
+100        | Insufficient credits
+101        | Wrong account credentials
+110        | Parameter error
