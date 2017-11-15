@@ -29,19 +29,19 @@ This is your HTTP Basic Authentication string and should be given as an HTTP hea
 Authorization: Basic aXAxLTEyMzQ1OkNuYlhGZnlUTTVCVEtoN3VOVg==`
 ```
 
-Sending SMS
+Sending SMS messages
 -----------
 
 * Base URL: `https://api.ip1sms.com/`
 * Endpoint: `api/sms/send`
 
-In order to send SMS you need to have credits. When you create an account and verify your phone number you'll be given €1 in credits, the amount of SMS you'll be able to send with those credits will heavily depend on what country you'll be sending the SMSes to.
+In order to send SMS messages you need to have credits. When you create an account and verify your phone number you'll be given €1 in credits, the amount of SMS messages you'll be able to send with those credits will heavily depend on what country you'll be sending the messages to.
 
-When creating a request to send SMS we use the `/api/sms/send` endpoint with the HTTP method `POST`.
+When creating a request to send SMS messages we use the `/api/sms/send` endpoint with the HTTP method `POST`.
 
-Since our REST API is JSON based that's the data structure we'll use and when sending SMS we have seven properties to play with:
+Since our REST API is JSON based that's the data structure we'll use and when sending SMS messages we have seven properties to play with:
 
-* `From`: Who or what the SMS should be sent from can be either a up to 15 digit (telephone) number or an up to 11 character ASCII string.
+* `From`: Who or what the SMS message should be sent from can be either a up to 15 digit (telephone) number or an up to 11 character ASCII string.
 * `Numbers`: A `collection` of phone numbers with country code, eg. 46 for Sweden.
 * `Contacts`: A `collection` of contact IDs. See the Contact section for how to use these.
 * `Groups`: A `collection` of group IDs. See the Group section for how to use these.
@@ -71,8 +71,6 @@ All recipients (Numbers, Contacts, Groups) will be converted into a single colle
   "Message": "This is the day you will always remember as the day you almost caught Captain Jack Sparrow!"
 }
 ```
-
-We have an automatically generated [site for documentation](https://api.ip1sms.com/Help/Api/POST-api-sms-send) which you can look at for futher details while sending SMS
 
 ### Templating
 
@@ -175,13 +173,13 @@ $context  = stream_context_create($options);
 $response = file_get_contents($url, false, $context);
 ```
 
-Reading sent SMS
+Reading sent SMS messages
 ----------------
 
 * Base URL: `https://api.ip1sms.com/`
 * Endpoint: `api/sms/sent/{id}`
 
-Once you've sent your request to `api/sms/send` you will first get a response for the SMS containing information such as ID, message, recipient phone number and initial status report like the json below.
+Once you've sent your request to `api/sms/send` you will first get a response for the SMS message containing information such as ID, message, recipient phone number and initial status report like the json below.
 
 ``` json
 {
@@ -197,19 +195,19 @@ Once you've sent your request to `api/sms/send` you will first get a response fo
 }
 ```
 
-* `ID`: A unique integer value for the specific SMS.
-* `BundleID`: Integer that identifies that SMS with the same value was sent through the same request otherwise it's set to null.
-* `Status`: Integer value telling the status of the SMS. See [Status codes](#status-codes) for possible values.
+* `ID`: A unique integer value for the specific SMS message.
+* `BundleID`: Integer that identifies that SMS message with the same value was sent through the same request otherwise it's set to null.
+* `Status`: Integer value telling the status of the SMS message. See [Status codes](#status-codes) for possible values.
 * `StatusDescription`: A describing text of the status code.
-* `Created`: When the SMS was created in UTC.
-* `Modified`: When the SMS was last updated. Most often when the status was updated. Only available on `GET` requests.
+* `Created`: When the SMS message was created in UTC.
+* `Modified`: When the SMS message was last updated. Most often when the status was updated. Only available on `GET` requests.
 
-You can later use the ID to fetch updates for the specific SMS via the `api/sms/sent/{id}`-endpoint but you can also fetch all your sent SMS by not providing an ID and making a request to `api/sms/sent`. 
+You can later use the ID to fetch updates for the specific SMS messages via the `api/sms/sent/{id}`-endpoint but you can also fetch all your sent SMS messages by not providing an ID and making a request to `api/sms/sent`. 
 
 Status codes
 ------------
 
-This is the list of all possible SMS status codes and their description.
+This is the list of all our SMS message status codes and their description.
 
 Status code| Description
 -----------|------------
