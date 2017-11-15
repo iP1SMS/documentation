@@ -196,7 +196,7 @@ Once you've sent your request to `api/sms/send` you will first get a response fo
 ```
 
 * `ID`: A unique integer value for the specific SMS message.
-* `BundleID`: Integer that identifies that SMS message with the same value was sent through the same request otherwise it's set to null.
+* `BundleID`: Multiple messages may be sent in one request, if that is the case a bundle ID will be added in order to group the messages together. If only the message was sent alone no BundleID will be given to the message.
 * `Status`: Integer value telling the status of the SMS message. See [Status codes](#status-codes) for possible values.
 * `StatusDescription`: A describing text of the status code.
 * `Created`: When the SMS message was created in UTC.
