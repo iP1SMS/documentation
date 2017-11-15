@@ -4,7 +4,7 @@ REST API
 API Wide Requirements
 ---------------------
 
-There are a few HTTP headers that are required. Firstly, authentication needs to be in place (see previous article). Secondly, `Content-Type` and `Content-Length` needs to be set to `application/json; utf8` and the size of the body respectively. This makes sure the API understands that you send json formatted and utf8 encoded data in your request body.
+There are a few HTTP headers that are required. Firstly, authentication needs to be in place (see [Authentication](Authentication)). Secondly, `Content-Type` and `Content-Length` needs to be set to `application/json; utf8` and the size of the body respectively. This makes sure the API understands that you send json formatted and utf8 encoded data in your request body.
 
 Authentication
 --------------
