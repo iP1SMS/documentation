@@ -1,13 +1,14 @@
 REST API
 ========
 
-Global Requirements
--------------------
+API Wide Requirements
+---------------------
 
 There are a few HTTP headers that are required. Firstly, authentication needs to be in place (see previous article). Secondly, `Content-Type` and `Content-Length` needs to be set to `application/json; utf8` and the size of the body respectively. This makes sure the API understands that you send json formatted and utf8 encoded data in your request body.
 
 Authentication
 --------------
+
 All API calls require authentication with your account credentials. The REST API uses [`HTTP Basic Authentication`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication#Basic_authentication_scheme) using your account ID and API key. For how to get API credentials checkout [this page](Authentication).
 
 To get your Basic Authentication string, take your account ID (i. e. `ip1-12345`) and your API-key (i. e. `cCnbXFfyTM5BTKh7uNV`) and run them through a Base64 encoder in the following way:
@@ -15,28 +16,31 @@ To get your Basic Authentication string, take your account ID (i. e. `ip1-12345`
 ```
 ip1-12345:CnbXFfyTM5BTKh7uNV
 ```
+
 You should get at string that looks something like this:
 
 ```
 aXAxLTEyMzQ1OkNuYlhGZnlUTTVCVEtoN3VOVg==
 ```
+
 This is your HTTP Basic Authentication string and should be given as an HTTP header in the following way:
 
 ```
 Authorization: Basic aXAxLTEyMzQ1OkNuYlhGZnlUTTVCVEtoN3VOVg==`
 ```
 
-
 Sending SMS
 -----------
- 
- * Base URL: `https://api.ip1sms.com/`
- * Endpoint: `api/sms/send`
+
+* Base URL: `https://api.ip1sms.com/`
+* Endpoint: `api/sms/send`
 
 In order to send SMS you need to have credits. When you create an account and verify your phone number you'll be given €1 in credits, the amount of SMS you'll be able to send with those credits will heavily depend on what country you'll be sending the SMSes to.
 
-When creating a request to send SMS we use the `/api/sms/send` endpoint with the HTTP method `POST`. 
+When creating a request to send SMS we use the `/api/sms/send` endpoint with the HTTP method `POST`.
+
 Since our REST API is JSON based that's the data structure we'll use and when sending SMS we have seven properties to play with:
+
 * `From`: Who or what the SMS should be sent from can be either a up to 15 digit (telephone) number or an up to 11 character ASCII string.
 * `Numbers`: A `collection` of phone numbers with country code, eg. 46 for Sweden.
 * `Contacts`: A `collection` of contact IDs. See the Contact section for how to use these.
@@ -80,7 +84,6 @@ Templating can be done by wrapping an argument with curly brackets (`{lastName}`
 
 Note that if a you specify an argument in the message but don't provide an example for it in the parameter data it will not be replaced. As you can see below the whole message is wrapped in curly brackets. However if a parameter is given to only one recipient and not the others (including default) the parameter will default to empty string. This enables us to still use curly brackets outside of templating.
 
-
 ``` json
 {
   "From": "TestNOS",
@@ -99,11 +102,14 @@ Note that if a you specify an argument in the message but don't provide an examp
     }
   }
 }
-
 ```
+
 ### Code Examples
+
 Below you'll see example code for sending an SMS in a few languages.
+
 #### .NET / C#
+
 ``` csharp
 string account = "ip1-xxxxx";
 string password = "cCnbXFfyTM5BTKh7uNV"
