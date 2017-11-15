@@ -209,7 +209,7 @@ You can later use the ID to fetch updates for the specific SMS via the `api/sms/
 Status codes
 ------------
 
-This is the list of all possible status codes or an SMS.
+This is the list of all possible SMS status codes and their description.
 
 Status code| Description
 -----------|------------
