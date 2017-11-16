@@ -202,7 +202,7 @@ Once you've sent your request to `api/sms/send` you will first get a response fo
 * `Created`: When the SMS message was created in UTC.
 * `Modified`: When the SMS message was last updated. Most often when the status was updated. Only available on `GET` requests.
 
-You can later use the ID to fetch updates for the specific SMS messages via the `api/sms/sent/{id}`-endpoint but you can also fetch all your sent SMS messages by not providing an ID and making a request to `api/sms/sent`. 
+You can later use the ID to fetch updates for the specific SMS messages via the `api/sms/sent/{id}`-endpoint but you can also fetch all your sent SMS messages by not providing an ID and making a request to `api/sms/sent`.
 
 Status codes
 ------------
