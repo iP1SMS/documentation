@@ -5,6 +5,7 @@ script:
   - "if grep '\t' *.md; then echo 'Tabs are bad, please use four spaces.'; false; fi"
   - "if grep -n -r '[[:blank:]]$' *.md; then echo 'Please remove trailing whitespace.'; false; fi"
   - bundle exec jekyll build
+  - ls ./_site -la
   - bundle exec htmlproofer ./_site --only-4xx --check-favicon --check-html
 env:
   global:
