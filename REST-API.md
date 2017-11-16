@@ -74,13 +74,13 @@ All recipients (Numbers, Contacts, Groups) will be converted into a single colle
 
 ### Templating
 
-Templating can be done by wrapping an argument with curly brackets (`{lastName}`) and then adding an object to the `Parameters` array with the phone number as the property name. For phone numbers not provided you may also specify templating values in the `Parameters` property `default`. The arguments specified in the message text will be replaced with their respective values prioritized in the following order:
+Templating can be done by wrapping an argument with curly brackets (`{lastName}`) and then adding an object to the `Parameters` object with the phone number as the property name. The arguments are case sensitive meaning that `{title}` and `{Title}` won't match and thus be considered different arguments. For phone numbers not provided you may also specify templating values in the `Parameters` property `default`. The arguments specified in the message text will be replaced with their respective values prioritized in the following order:
 
 1. Number specific value eg. `"4610606060": {"title": "Sir"}`
 2. Default value
 3. Empty string
 
-Note that if a you specify an argument in the message but don't provide an example for it in the parameter data it will not be replaced. As you can see below the whole message is wrapped in curly brackets. However if a parameter is given to only one recipient and not the others (including default) the parameter will default to empty string. This enables us to still use curly brackets outside of templating.
+Note that if a you specify an argument in the message but don't provide an example for it in the parameter data it will not be replaced. As you can see below the whole message is wrapped in curly brackets. However if a parameter is given to only one recipient and not the others (including default) the parameter will default to empty string. This enables us to still use curly brackets when we don't want to template.
 
 ``` json
 {
