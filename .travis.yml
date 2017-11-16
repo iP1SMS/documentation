@@ -2,6 +2,8 @@ language: ruby
 rvm:
   - 2.1
 script:
+  - "if grep '\t' **/*.md; then echo 'Tabs are bad, please use four spaces.'; false; fi"
+  - "if grep -n -r '[[:blank:]]$' **/*.md; then echo 'Please remove trailing whitespace.'; false; fi"
   - bundle exec jekyll build
   # - bundle exec htmlproofer ./_site --only-4xx --check-favicon --check-html
 env:
