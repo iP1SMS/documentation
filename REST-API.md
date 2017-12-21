@@ -207,29 +207,25 @@ You can later use the ID to fetch updates for the specific SMS messages via the 
 Status codes
 ------------
 
-This is the list of all our SMS message status codes and their description.
+This is the list of all our SMS message status codes and their description. If you use multiple APIs with the same API key you'll need to add support for the status codes used in all of the used APIs.
 
-Status code| Description
------------|------------
-0          | Delivered to gateway
-1          | Gateway login failed
-2          | Invalid message content
-3          | Invalid phone number format
-4          | Insufficient funds
-10         | Received by the gateway
-11         | Delayed delivery
-12         | Delayed delivery cancelled
-21         | Delivered to the GSM network
-22         | Delivered to the phone
-30         | Insufficient funds
-41         | Invalid message content
-42         | Internal error
-43         | Delivery failed
-44         | Delivery failed
-45         | Invalid phone number
-50         | General delivery error
-51         | Delivery to GSM network failed
-52         | Delivery to phone failed
-100        | Insufficient credits
-101        | Wrong account credentials
-110        | Parameter error
+Status code| Error Message                      | Description                                                                                                                                                  | Retry with same data?          | Applicable API
+---------- | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------ | -------------------
+0          | Delivered to gateway               | The message has reached the gateway and should be considered as 'in transit'                                                                                 | No (destination not final)     | REST, SOAP, Gateway
+1          | Gateway login failed               |                                                                                                                                                              | Yes, later                     | SOAP, Gateway
+3          | Invalid phone number format        |                                                                                                                                                              | No                             | SOAP, Gateway
+11         | Delayed delivery                   | Will be sent in the future                                                                                                                                   | No (destination not final)     | SOAP, Gateway
+12         | Delayed delivery cancelled         | Delivery cancelled by user                                                                                                                                   | No                             | SOAP, Gateway
+21         | Delivered to the GSM network       | The SMS message should be considered as 'in transit', may stay in this state until recipeint is connected to the GSM network or until 48 hours has passed    | No (destination not final)     | REST, SOAP, Gateway
+22         | Delivered to the phone             | The message has successfully been delivered                                                                                                                  | No                             | REST, SOAP, Gateway
+41         | Invalid message content            |                                                                                                                                                              | No                             | None (Deprecated)
+42         | Internal error                     | Internal error. Please contact support for more information                                                                                                  | Yes                            | REST, SOAP, Gateway
+44         | Delivery failed                    | Recipient was not on the GSM network for the 48 hour lifespan of the SMS message                                                                             | Yes                            | None (Deprecated)
+50         | General delivery error             |                                                                                                                                                              | No                             | SOAP, Gateway
+51         | Delivery to GSM network failed     | A radio tower failed to deliverRecipient was not on the GSM network for the 48 hour lifespan of the SMS message                                              | Yes                            | REST, SOAP, Gateway
+52         | Delivery to phone failed           | Recipient was not on the GSM network for the 48 hour lifespan of the SMS message                                                                             | Yes                            | REST, SOAP, Gateway
+55         | Unknown                            |                                                                                                                                                              | No                             | None (Deprecated)
+60         | Unknown                            |                                                                                                                                                              | No                             | None (Deprecated)
+100        | Insufficient credits               |                                                                                                                                                              | Refill credits first           | SOAP, Gateway
+101        | Wrong account credentials          |                                                                                                                                                              | No                             | SOAP, Gateway
+110        | Parameter error                    |                                                                                                                                                              | No                             | SOAP, Gateway
