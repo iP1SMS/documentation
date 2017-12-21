@@ -5,7 +5,7 @@ script:
   - "if grep '\t' *.md; then echo 'Tabs are bad, please use four spaces.'; false; fi"
   - "if grep -n -r '[[:blank:]]$' *.md; then echo 'Please remove trailing whitespace.'; false; fi"
   - bundle exec jekyll build
-  - bundle exec htmlproofer ./_site --only-4xx --check-favicon --check-html
+  - bundle exec htmlproofer ./_site --only-4xx --check-html
 env:
   global:
     - NOKOGIRI_USE_SYSTEM_LIBRARIES=true # speeds up installation of html-proofer
