@@ -51,6 +51,12 @@ Since our REST API is JSON based that's the data structure we'll use and when se
 
 All recipients (Numbers, Contacts, Groups) will be converted into a single collection of Contacts (So that emails addresses and templating fields are conserved where applicable) and then remove all duplicated contacts distincted by their phone number.
 
+---
+
+#### Note
+
+We recommend sending to a maximum of 1000 recipients per HTTP request.
+
 ``` json
 {
   "Numbers": [
